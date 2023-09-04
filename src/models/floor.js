@@ -1,14 +1,14 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    return sequelize.define('type_property',
+    return sequelize.define('floor',
         {
             id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true,
             },
-            type_property: {
+            floor: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },

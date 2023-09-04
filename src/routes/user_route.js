@@ -2,8 +2,8 @@ const router = require('express').Router();
 const UserController = require('../controllers/user_controller');
 const validateJWT = require('../middleware/validateJWT');
 
-router.route('/setOwnerToUser')
-    .post(validateJWT, UserController.setOwnerToUser)
+// router.route('/setOwnerToUser')
+//     .post(validateJWT, UserController.setOwnerToUser)
 
 router.route('/updateUserTypeUser')
     .post(validateJWT, UserController.updateUserTypeUser)

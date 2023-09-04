@@ -1,19 +1,19 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    return sequelize.define('property',
+    return sequelize.define('company',
         {
             id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true,
             },
-            property: {
+            company_name: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-            id_type_property: {
-                type: DataTypes.INTEGER,
+            contact_phone: {
+                type: DataTypes.STRING,
                 allowNull: false,
             },
         },{

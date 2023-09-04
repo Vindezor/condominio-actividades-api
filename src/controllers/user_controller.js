@@ -119,14 +119,14 @@ userController.loginUser = (req, res) => {
     if(data.username === undefined || data.password === undefined){
         res.json(response({
             status: 'ERROR',
-            msg: 'Usuario o Contraseña inválida'
+            msg: 'Usuario y/o Contraseña inválida'
         }));
     } else {
         findByUsername(data.username).then((user) => {
             if(user === null){
                 res.json(response({
                     status: 'ERROR',
-                    msg: 'Usuario o Contraseña inválida'
+                    msg: 'Usuario y/o Contraseña inválida'
                 }));
             } else {
                 bcrypt.compare(data.password, user.password, (err, result) => {
@@ -146,7 +146,7 @@ userController.loginUser = (req, res) => {
                     } else {
                         res.json(response({
                             status: 'ERROR',
-                            msg: 'Usuario o Contraseña inválida'
+                            msg: 'Usuario y/o Contraseña inválida'
                         }));
                     }
                 });
@@ -216,30 +216,30 @@ userController.createUser = (req, res) => {
     });
 };
 
-userController.setOwnerToUser = (req, res) => {
-    if(req.id_type_user >= 2){
-        findOne(req.body.id_user).then(async (user) => {
-            if(user) {
-                user.id_owner = req.body.id_owner;
-                await user.save();
-                findOne(user.id).then((user) => {
-                    res.json(response({
-                        status: 'SUCCESS',
-                        msg: 'Asignación exitosa',
-                        data: user,
-                    }));
-                });
-            } else {
-                res.json(response({
-                    status: 'ERROR',
-                    msg: 'Usuario no encontrado'
-                }));
-            }
-        })
-    } else {
-        res.status(403).send();
-    }
-}
+// userController.setOwnerToUser = (req, res) => {
+//     if(req.id_type_user >= 2){
+//         findOne(req.body.id_user).then(async (user) => {
+//             if(user) {
+//                 user.id_owner = req.body.id_owner;
+//                 await user.save();
+//                 findOne(user.id).then((user) => {
+//                     res.json(response({
+//                         status: 'SUCCESS',
+//                         msg: 'Asignación exitosa',
+//                         data: user,
+//                     }));
+//                 });
+//             } else {
+//                 res.json(response({
+//                     status: 'ERROR',
+//                     msg: 'Usuario no encontrado'
+//                 }));
+//             }
+//         })
+//     } else {
+//         res.status(403).send();
+//     }
+// }
 
 userController.get = (req, res, next) => {
 

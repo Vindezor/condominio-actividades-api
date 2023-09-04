@@ -1,30 +1,30 @@
-const typeUserController ={};
-const {TypeUser} = require('../db/sequelize');
+const floorController ={};
+const {Floor} = require('../db/sequelize');
 const response = require('../utils/global_response');
 
 function findOne(id) {
-    return TypeUser.findOne({
+    return Floor.findOne({
         where: {
             id
         }
     });
 }
 
-typeUserController.create = (req, res) => {
+floorController.create = (req, res) => {
     if(req.id_type_user >= 3){
         let data = req.body;
-        TypeUser.create({
-            type_user: data.type_user
-        }).then((type_user) => {
+        Floor.create({
+            floor: data.floor
+        }).then((floor) => {
             res.json(response({
                 status: 'SUCCESS',
-                data: type_user,
+                data: floor,
             }));
         }).catch((e) => {
             console.log(e);
             res.json(response({
                 status: 'ERROR',
-                msg: 'Error al registrar tipo de usuario'
+                msg: 'Error al registrar piso'
             })); 
         });
     } else {
@@ -32,29 +32,29 @@ typeUserController.create = (req, res) => {
     }
 }
 
-typeUserController.findAll = (req, res, next) => {
-    TypeUser.findAll().then(type_users => {
+floorController.findAll = (req, res, next) => {
+    Floor.findAll().then(floors => {
         res.json(response({
             status: 'SUCCESS',
-            data: type_users
+            data: floors
         }));
     }).catch((e) => {
         res.json(response({
             status: 'ERROR',
-            msg: 'Error al buscar tipo de usuarios'
+            msg: 'Error al buscar pisos'
         }));
     });
 };
 
-typeUserController.findById = (req, res, next) => {
-    const id = req.params.typeUserId;
-    findOne(id).then(typeUser => {
-        if(typeUser){
-            res.json(typeUser)
+floorController.findById = (req, res, next) => {
+    const id = req.params.floorId;
+    findOne(id).then(floor => {
+        if(floor){
+            res.json(floor)
         } else {
             res.status(404).send();
         }
     }).catch(next);
 };
 
-module.exports = typeUserController;
+module.exports = floorController;

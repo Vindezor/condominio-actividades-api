@@ -1,18 +1,22 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    return sequelize.define('owner_property',
+    return sequelize.define('responsible',
         {
             id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true,
             },
-            id_owner: {
-                type: DataTypes.INTEGER,
+            name: {
+                type: DataTypes.STRING,
                 allowNull: false,
             },
-            id_property: {
+            document_id: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            id_company: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
             },

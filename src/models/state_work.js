@@ -1,18 +1,14 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    return sequelize.define('type_amount',
+    return sequelize.define('state_work',
         {
             id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true,
             },
-            type_amount: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            symbol: {
+            state_work: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },

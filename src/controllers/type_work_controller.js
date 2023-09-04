@@ -1,30 +1,30 @@
-const typeUserController ={};
-const {TypeUser} = require('../db/sequelize');
+const typeWorkController ={};
+const {TypeWork} = require('../db/sequelize');
 const response = require('../utils/global_response');
 
 function findOne(id) {
-    return TypeUser.findOne({
+    return TypeWork.findOne({
         where: {
             id
         }
     });
 }
 
-typeUserController.create = (req, res) => {
+typeWorkController.create = (req, res) => {
     if(req.id_type_user >= 3){
         let data = req.body;
-        TypeUser.create({
-            type_user: data.type_user
-        }).then((type_user) => {
+        TypeWork.create({
+            type_work: data.type_work
+        }).then((type_work) => {
             res.json(response({
                 status: 'SUCCESS',
-                data: type_user,
+                data: type_work,
             }));
         }).catch((e) => {
             console.log(e);
             res.json(response({
                 status: 'ERROR',
-                msg: 'Error al registrar tipo de usuario'
+                msg: 'Error al registrar tipo de trabajo'
             })); 
         });
     } else {
@@ -32,29 +32,29 @@ typeUserController.create = (req, res) => {
     }
 }
 
-typeUserController.findAll = (req, res, next) => {
-    TypeUser.findAll().then(type_users => {
+typeWorkController.findAll = (req, res, next) => {
+    TypeWork.findAll().then(type_works => {
         res.json(response({
             status: 'SUCCESS',
-            data: type_users
+            data: type_works
         }));
     }).catch((e) => {
         res.json(response({
             status: 'ERROR',
-            msg: 'Error al buscar tipo de usuarios'
+            msg: 'Error al buscar tipo de trabajos'
         }));
     });
 };
 
-typeUserController.findById = (req, res, next) => {
-    const id = req.params.typeUserId;
-    findOne(id).then(typeUser => {
-        if(typeUser){
-            res.json(typeUser)
+typeWorkController.findById = (req, res, next) => {
+    const id = req.params.typeWorkId;
+    findOne(id).then(typeWork => {
+        if(typeWork){
+            res.json(typeWork)
         } else {
             res.status(404).send();
         }
     }).catch(next);
 };
 
-module.exports = typeUserController;
+module.exports = typeWorkController;
