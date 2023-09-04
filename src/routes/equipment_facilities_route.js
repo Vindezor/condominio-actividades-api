@@ -11,4 +11,10 @@ router.route('/getEquipmentFacilitiesById/:equipmentFacilitiesId')
 router.route('/createEquipmentFacilities')
     .post(validateJWT, EquipmentFacilitiesController.create)
 
+router.route('/updateEquipmentFacilities')
+    .post(validateJWT, EquipmentFacilitiesController.update)
+
+router.route('/deleteEquipmentFacilities')
+    .post(validateJWT, EquipmentFacilitiesController.delete)
+
 module.exports = router;

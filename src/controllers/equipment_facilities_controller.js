@@ -10,6 +10,70 @@ function findOne(id) {
     });
 }
 
+equipmentFacilitiesController.delete = (req, res) => {
+    if(req.id_type_user >= 3){
+        let data = req.body;
+        findOne(data.id).then(async (equipmentFacility) => {
+            if(equipmentFacility){
+                try {
+                    await equipmentFacility.destroy();
+                    res.json(response({
+                        status: 'SUCCESS',
+                        msg: 'Eliminado exitosamente'
+                    }));
+                } catch (error) {
+                    res.json(response({
+                        status: 'ERROR',
+                        msg: 'Error al eliminar'
+                    }));
+                }
+            } else {
+                res.json(response({
+                    status: 'ERROR',
+                    msg: 'Equipamiento e Instalacion no encontrado'
+                }));
+            }
+        })
+    } else {
+        res.status(403).send();
+    }
+}
+
+equipmentFacilitiesController.update = (req, res) => {
+    if(req.id_type_user >= 3){
+        let data = req.body;
+        findOne(data.id).then(async (equipmentFacility) => {
+            if(equipmentFacility){
+                try {
+                    equipmentFacility.name = data.name ? data.name : equipmentFacility.name;
+                    equipmentFacility.id_floor = data.id_floor ? data.id_floor : equipmentFacility.id_floor;
+                    equipmentFacility.description = data.description ? data.description : equipmentFacility.description;
+                    await equipmentFacility.save();
+                    findOne(data.id).then((equipmentFacility) => {
+                        res.json(response({
+                            status: 'SUCCESS',
+                            msg: 'Cambio exitoso',
+                            data: equipmentFacility,
+                        }));
+                    });
+                } catch (error) {
+                    res.json(response({
+                        status: 'ERROR',
+                        msg: 'Error al hacer el cambio'
+                    }));
+                }
+            } else {
+                res.json(response({
+                    status: 'ERROR',
+                    msg: 'Equipamiento e Instalacion no encontrado'
+                }));
+            }
+        })
+    } else {
+        res.status(403).send();
+    }
+}
+
 equipmentFacilitiesController.create = (req, res) => {
     if(req.id_type_user >= 3){
         let data = req.body;
