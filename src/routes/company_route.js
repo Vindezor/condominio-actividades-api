@@ -11,4 +11,10 @@ router.route('/getCompanyById/:companyId')
 router.route('/createCompany')
     .post(validateJWT, CompanyController.create)
 
+router.route('/updateCompany')
+    .post(validateJWT, CompanyController.update)
+
+router.route('/deleteCompany')
+    .post(validateJWT, CompanyController.delete)
+
 module.exports = router;

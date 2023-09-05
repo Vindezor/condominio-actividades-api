@@ -11,4 +11,10 @@ router.route('/getFloorById/:floorId')
 router.route('/createFloor')
     .post(validateJWT, FloorController.create)
 
+router.route('/updateFloor')
+    .post(validateJWT, FloorController.update)
+
+router.route('/deleteFloor')
+    .post(validateJWT, FloorController.delete)
+
 module.exports = router;

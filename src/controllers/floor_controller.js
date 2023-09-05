@@ -10,6 +10,68 @@ function findOne(id) {
     });
 }
 
+floorController.delete = (req, res) => {
+    if(req.id_type_user >= 3){
+        let data = req.body;
+        findOne(data.id).then(async (floor) => {
+            if(floor){
+                try {
+                    await floor.destroy();
+                    res.json(response({
+                        status: 'SUCCESS',
+                        msg: 'Eliminado exitosamente'
+                    }));
+                } catch (error) {
+                    res.json(response({
+                        status: 'ERROR',
+                        msg: 'Error al eliminar'
+                    }));
+                }
+            } else {
+                res.json(response({
+                    status: 'ERROR',
+                    msg: 'Piso no encontrado'
+                }));
+            }
+        })
+    } else {
+        res.status(403).send();
+    }
+}
+
+floorController.update = (req, res) => {
+    if(req.id_type_user >= 3){
+        let data = req.body;
+        findOne(data.id).then(async (floor) => {
+            if(floor){
+                try {
+                    floor.floor = data.floor ? data.floor : floor.floor;
+                    await floor.save();
+                    findOne(data.id).then((floor) => {
+                        res.json(response({
+                            status: 'SUCCESS',
+                            msg: 'Cambio exitoso',
+                            data: floor,
+                        }));
+                    });
+                } catch (error) {
+                    res.json(response({
+                        status: 'ERROR',
+                        msg: 'Error al hacer el cambio'
+                    }));
+                }
+            } else {
+                res.json(response({
+                    status: 'ERROR',
+                    msg: 'Piso no encontrado'
+                }));
+            }
+        })
+    } else {
+        res.status(403).send();
+    }
+}
+
 floorController.create = (req, res) => {
     if(req.id_type_user >= 3){
         let data = req.body;

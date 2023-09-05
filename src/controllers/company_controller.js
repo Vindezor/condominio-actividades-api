@@ -10,6 +10,70 @@ function findOne(id) {
     });
 }
 
+companyController.delete = (req, res) => {
+    if(req.id_type_user >= 3){
+        let data = req.body;
+        findOne(data.id).then(async (company) => {
+            if(company){
+                try {
+                    await company.destroy();
+                    res.json(response({
+                        status: 'SUCCESS',
+                        msg: 'Eliminado exitosamente'
+                    }));
+                } catch (error) {
+                    console.log(error);
+                    res.json(response({
+                        status: 'ERROR',
+                        msg: 'Error al eliminar'
+                    }));
+                }
+            } else {
+                res.json(response({
+                    status: 'ERROR',
+                    msg: 'Compañis no encontrada'
+                }));
+            }
+        })
+    } else {
+        res.status(403).send();
+    }
+}
+
+companyController.update = (req, res) => {
+    if(req.id_type_user >= 3){
+        let data = req.body;
+        findOne(data.id).then(async (company) => {
+            if(company){
+                try {
+                    company.company_name = data.company_name ? data.company_name : company.company_name;
+                    company.contact_phone = data.contact_phone ? data.contact_phone : company.contact_phone;
+                    await company.save();
+                    findOne(data.id).then((company) => {
+                        res.json(response({
+                            status: 'SUCCESS',
+                            msg: 'Cambio exitoso',
+                            data: company,
+                        }));
+                    });
+                } catch (error) {
+                    res.json(response({
+                        status: 'ERROR',
+                        msg: 'Error al hacer el cambio'
+                    }));
+                }
+            } else {
+                res.json(response({
+                    status: 'ERROR',
+                    msg: 'Compañia no encontrada'
+                }));
+            }
+        })
+    } else {
+        res.status(403).send();
+    }
+}
+
 companyController.create = (req, res) => {
     if(req.id_type_user >= 3){
         let data = req.body;
