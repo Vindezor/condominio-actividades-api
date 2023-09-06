@@ -11,4 +11,10 @@ router.route('/getResponsibleById/:responsibleId')
 router.route('/createResponsible')
     .post(validateJWT, ResponsibleController.create)
 
+router.route('/updateResponsible')
+    .post(validateJWT, ResponsibleController.update)
+
+router.route('/deleteResponsible')
+    .post(validateJWT, ResponsibleController.delete)
+
 module.exports = router;

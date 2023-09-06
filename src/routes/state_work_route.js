@@ -11,4 +11,10 @@ router.route('/getStateWorkById/:stateWorkId')
 router.route('/createStateWork')
     .post(validateJWT, StateWorkController.create)
 
+router.route('/updateStateWork')
+    .post(validateJWT, StateWorkController.update)
+
+router.route('/deleteStateWork')
+    .post(validateJWT, StateWorkController.delete)
+
 module.exports = router;

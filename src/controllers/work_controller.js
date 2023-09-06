@@ -1,5 +1,5 @@
 const workController ={};
-const {Work} = require('../db/sequelize');
+const {Work, TypeWork, StateWork, Responsible} = require('../db/sequelize');
 const response = require('../utils/global_response');
 
 function findOne(id) {
@@ -38,12 +38,16 @@ workController.create = (req, res) => {
 }
 
 workController.findAll = (req, res, next) => {
-    Work.findAll().then(works => {
+    Work.findAll({
+        include: [TypeWork, StateWork, Responsible],
+        attributes: {exclude: ['id_type_work', 'id_state_work', 'id_responsible']},
+    }).then(works => {
         res.json(response({
             status: 'SUCCESS',
             data: works
         }));
     }).catch((e) => {
+        console.log(e);
         res.json(response({
             status: 'ERROR',
             msg: 'Error al buscar trabajos'

@@ -11,4 +11,10 @@ router.route('/getTypeWorkById/:typeWorkId')
 router.route('/createTypeWork')
     .post(validateJWT, TypeWorkController.create)
 
+router.route('/updateTypeWork')
+    .post(validateJWT, TypeWorkController.update)
+
+router.route('/deleteTypeWork')
+    .post(validateJWT, TypeWorkController.delete)
+
 module.exports = router;

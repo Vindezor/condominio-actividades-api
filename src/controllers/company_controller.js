@@ -31,7 +31,7 @@ companyController.delete = (req, res) => {
             } else {
                 res.json(response({
                     status: 'ERROR',
-                    msg: 'Compañis no encontrada'
+                    msg: 'Compañia no encontrada'
                 }));
             }
         })

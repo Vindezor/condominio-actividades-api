@@ -10,6 +10,68 @@ function findOne(id) {
     });
 }
 
+stateWorkController.delete = (req, res) => {
+    if(req.id_type_user >= 3){
+        let data = req.body;
+        findOne(data.id).then(async (state_work) => {
+            if(state_work){
+                try {
+                    await state_work.destroy();
+                    res.json(response({
+                        status: 'SUCCESS',
+                        msg: 'Eliminado exitosamente'
+                    }));
+                } catch (error) {
+                    res.json(response({
+                        status: 'ERROR',
+                        msg: 'Error al eliminar'
+                    }));
+                }
+            } else {
+                res.json(response({
+                    status: 'ERROR',
+                    msg: 'Estado de Trabajo no encontrado'
+                }));
+            }
+        })
+    } else {
+        res.status(403).send();
+    }
+}
+
+stateWorkController.update = (req, res) => {
+    if(req.id_type_user >= 3){
+        let data = req.body;
+        findOne(data.id).then(async (state_work) => {
+            if(state_work){
+                try {
+                    state_work.state_work = data.state_work ? data.state_work : state_work.state_work;
+                    await state_work.save();
+                    findOne(data.id).then((state_work) => {
+                        res.json(response({
+                            status: 'SUCCESS',
+                            msg: 'Cambio exitoso',
+                            data: state_work,
+                        }));
+                    });
+                } catch (error) {
+                    res.json(response({
+                        status: 'ERROR',
+                        msg: 'Error al hacer el cambio'
+                    }));
+                }
+            } else {
+                res.json(response({
+                    status: 'ERROR',
+                    msg: 'Estado de Trabajo no encontrado'
+                }));
+            }
+        })
+    } else {
+        res.status(403).send();
+    }
+}
+
 stateWorkController.create = (req, res) => {
     if(req.id_type_user >= 3){
         let data = req.body;
