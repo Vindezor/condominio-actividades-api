@@ -32,6 +32,10 @@ module.exports = (sequelize) => {
                 type: DataTypes.TEXT,
                 allowNull: false,
             },
+            id_equipment_facilities: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            }
         },{
             freezeTableName: true,
             timestamps: false,

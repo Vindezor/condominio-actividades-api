@@ -29,6 +29,7 @@ Responsible.belongsTo(Company, { foreignKey: 'id_company' });
 Work.belongsTo(StateWork, { foreignKey: 'id_state_work' });
 Work.belongsTo(TypeWork, { foreignKey: 'id_type_work' });
 Work.belongsTo(Responsible, { foreignKey: 'id_responsible' });
+Work.belongsTo(EquipmentFacilities, { foreignKey: 'id_equipment_facilities' });
 // User.belongsTo(Owner, { foreignKey: 'id_owner' });
 // Property.belongsTo(TypeProperty, { foreignKey: 'id_type_property' });
 // OwnerProperty.belongsTo(Owner, { foreignKey: 'id_owner' });
