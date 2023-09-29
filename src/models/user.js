@@ -36,3 +36,28 @@ module.exports = (sequelize) => {
         }
     );
 };
+
+// -- Table: public.user
+
+// -- DROP TABLE IF EXISTS public."user";
+
+// CREATE TABLE IF NOT EXISTS public."user"
+// (
+//     id integer NOT NULL DEFAULT nextval('user_id_seq'::regclass),
+//     username character varying COLLATE pg_catalog."default" NOT NULL,
+//     email character varying COLLATE pg_catalog."default" NOT NULL,
+//     password character varying COLLATE pg_catalog."default" NOT NULL,
+//     status boolean NOT NULL,
+//     id_type_user integer NOT NULL,
+//     CONSTRAINT user_pkey PRIMARY KEY (id),
+//     CONSTRAINT id_type_user FOREIGN KEY (id_type_user)
+//         REFERENCES public.type_user (id) MATCH SIMPLE
+//         ON UPDATE NO ACTION
+//         ON DELETE NO ACTION
+//         NOT VALID
+// )
+
+// TABLESPACE pg_default;
+
+// ALTER TABLE IF EXISTS public."user"
+//     OWNER to postgres;

@@ -18,3 +18,19 @@ module.exports = (sequelize) => {
         }
     );
 };
+
+// -- Table: public.type_work
+
+// -- DROP TABLE IF EXISTS public.type_work;
+
+// CREATE TABLE IF NOT EXISTS public.type_work
+// (
+//     id integer NOT NULL DEFAULT nextval('type_work_id_seq'::regclass),
+//     type_work character varying COLLATE pg_catalog."default" NOT NULL,
+//     CONSTRAINT type_work_pkey PRIMARY KEY (id)
+// )
+
+// TABLESPACE pg_default;
+
+// ALTER TABLE IF EXISTS public.type_work
+//     OWNER to postgres;

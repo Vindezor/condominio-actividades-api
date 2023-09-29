@@ -22,3 +22,20 @@ module.exports = (sequelize) => {
         }
     );
 };
+
+// -- Table: public.company
+
+// -- DROP TABLE IF EXISTS public.company;
+
+// CREATE TABLE IF NOT EXISTS public.company
+// (
+//     id integer NOT NULL DEFAULT nextval('company_id_seq'::regclass),
+//     company_name character varying COLLATE pg_catalog."default" NOT NULL,
+//     contact_phone character varying COLLATE pg_catalog."default" NOT NULL,
+//     CONSTRAINT company_pkey PRIMARY KEY (id)
+// )
+
+// TABLESPACE pg_default;
+
+// ALTER TABLE IF EXISTS public.company
+//     OWNER to postgres;

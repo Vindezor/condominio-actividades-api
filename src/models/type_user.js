@@ -18,3 +18,19 @@ module.exports = (sequelize) => {
         }
     );
 };
+
+// -- Table: public.type_user
+
+// -- DROP TABLE IF EXISTS public.type_user;
+
+// CREATE TABLE IF NOT EXISTS public.type_user
+// (
+//     id integer NOT NULL DEFAULT nextval('type_user_id_seq'::regclass),
+//     type_user character varying COLLATE pg_catalog."default" NOT NULL,
+//     CONSTRAINT type_user_pkey PRIMARY KEY (id)
+// )
+
+// TABLESPACE pg_default;
+
+// ALTER TABLE IF EXISTS public.type_user
+//     OWNER to postgres;
